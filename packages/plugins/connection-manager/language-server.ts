@@ -62,10 +62,8 @@ export default class ConnectionManagerPlugin implements ILanguageServerPlugin {
     return formatType === 'json'
       ? JSON.stringify(results, null, 2)
       : csvStringify(results, {
+        ...ConfigRO.csvExport,
         columns: cols,
-        header: true,
-        quoted_string: true,
-        quoted_empty: true,
       });
   };
 

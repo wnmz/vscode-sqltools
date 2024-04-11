@@ -500,6 +500,58 @@ export interface IResultsOptions {
   };
 }
 
+export interface ICSVExportOptions {
+  /**
+   * Field delimiter
+   * @type {string}
+   * @default ','
+   * @memberof ICSVExportOptions
+   */
+  delimiter?: string;
+  /**
+   * Include header line
+   * @type {boolean}
+   * @default true
+   * @memberof ICSVExportOptions
+   */
+  header?: boolean;
+  /**
+   * Quote characters
+   * @type {string}
+   * @default '"'
+   * @memberof ICSVExportOptions
+   */
+  quote?: string;
+  /**
+   * Quote all non-empty fields
+   * @type {boolean}
+   * @default false
+   * @memberof ICSVExportOptions
+   */
+  quoted?: boolean;
+  /**
+   * Quote empty fields
+   * @type {boolean}
+   * @default true
+   * @memberof ICSVExportOptions
+   */
+  quoted_empty?: boolean;
+  /**
+   * Quote all string fields
+   * @type {boolean}
+   * @default true
+   * @memberof ICSVExportOptions
+   */
+  quoted_string?: boolean;
+  /**
+   * Record delimiter or special value
+   * @type {string}
+   * @default 'unix'
+   * @memberof ICSVExportOptions
+   */
+  record_delimiter?: string;
+}
+
 export interface ISettings {
   /**
    * Disable new release notifications.
@@ -606,6 +658,13 @@ export interface ISettings {
    * @memberof ISettings
    */
   defaultOpenType?: 'prompt' | 'csv' | 'json';
+
+  /**
+   * CSV export format options
+   * @type {ICSVExportOptions}
+   * @memberof ISettings
+   */
+  csvExport?: ICSVExportOptions;
 
   /**
    * Enable node runtime usage.
