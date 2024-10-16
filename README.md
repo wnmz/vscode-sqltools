@@ -12,6 +12,13 @@
 
 </p>
 
+# Warning
+This is not original extension, it's fork of [mtxr/vscode-sqltools](https://github.com/mtxr/vscode-sqltools)
+
+# What this fork does?
+* It improves PostgreSQL driver error, adds line and pointer to error place in query result output
+![pg_error_example.png](static/pg_error_example.png)
+
 Welcome to Database Management done right.
 SQLTools provides connections to many of the most commonly used databases, making it easier to work with your data. With this tool, developers will save (a lot of) time, increase productivity and feel like a database hero ✌️
 

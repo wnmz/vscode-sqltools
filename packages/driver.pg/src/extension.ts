@@ -2,7 +2,7 @@ import { IExtension, IExtensionPlugin, IDriverExtensionApi } from '@sqltools/typ
 import { ExtensionContext, extensions, authentication } from 'vscode';
 import { DRIVER_ALIASES } from './constants';
 const { publisher, name } = require('../package.json');
-const driverName = 'PostgreSQL/Cockroach';
+const driverName = 'PostgreSQL/Cockroach (Rich PG Errors)';
 const AUTHENTICATION_PROVIDER = 'sqltools-driver-credentials';
 export async function activate(extContext: ExtensionContext): Promise<IDriverExtensionApi> {
   const sqltools = extensions.getExtension<IExtension>('mtxr.sqltools');
@@ -25,17 +25,6 @@ export async function activate(extContext: ExtensionContext): Promise<IDriverExt
         active: extContext.asAbsolutePath('icons/pg/active.png'),
         default: extContext.asAbsolutePath('icons/pg/default.png'),
         inactive: extContext.asAbsolutePath('icons/pg/inactive.png'),
-      });
-      // redshift (deprecated as an alias in favour of the standalone one, so doesn't register a default icon so as not to appear in Connection Assistant)
-      extension.resourcesMap().set(`driver/${DRIVER_ALIASES[1].value}/icons`, {
-        active: extContext.asAbsolutePath('icons/redshift/active.png'),
-        inactive: extContext.asAbsolutePath('icons/redshift/inactive.png'),
-      });
-      // cockroach
-      extension.resourcesMap().set(`driver/${DRIVER_ALIASES[2].value}/icons`, {
-        active: extContext.asAbsolutePath('icons/cockroach/active.png'),
-        default: extContext.asAbsolutePath('icons/cockroach/default.png'),
-        inactive: extContext.asAbsolutePath('icons/cockroach/inactive.png'),
       });
       DRIVER_ALIASES.forEach(({ value }) => {
         extension.resourcesMap().set(`driver/${value}/extension-id`, extensionId);
