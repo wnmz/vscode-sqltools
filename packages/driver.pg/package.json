@@ -1,7 +1,7 @@
 {
-  "name": "sqltools-driver-pg",
-  "displayName": "SQLTools PostgreSQL/Cockroach Driver",
-  "description": "SQLTools PostgreSQL/Cockroach Driver",
+  "name": "sqltools-driver-pg-rich-pg-error",
+  "displayName": "SQLTools PostgreSQL/Cockroach Driver (Rich PG Error)",
+  "description": "SQLTools PostgreSQL/Cockroach Driver (Rich PG Error)",
   "version": "0.5.4",
   "engines": {
     "vscode": "^1.72.0"
