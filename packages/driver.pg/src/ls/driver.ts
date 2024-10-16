@@ -123,10 +123,7 @@ export default class PostgreSQL extends AbstractDriver<Pool, PoolConfig> impleme
           resultId: generateId(),
           cols: [],
           messages: messages.concat([
-            this.prepareMessage ([
-              (err && err.message || err),
-              err && err.routine === 'scanner_yyerror' && err.position ? `at character ${err.position}` : undefined
-            ].filter(Boolean).join(' '))
+            this.prepareErrorMessage(err, query.toString())
           ]),
           error: true,
           rawError: err,
@@ -235,4 +232,46 @@ export default class PostgreSQL extends AbstractDriver<Pool, PoolConfig> impleme
 
     return this.completionsCache;
   }
+
+  private prepareErrorMessage(err: any, query: string) {
+    let errorMsg = "";
+  
+    if (!err.position) {
+      return {
+        message: err.message.toString(),
+        date: new Date(),
+      };
+    }
+  
+    const errPosition = parseInt(err.position, 10);
+    const lines = query.split('\n');
+    let currentPos = 0;
+    let errorLine = 0;
+    let errorColumn = 0;
+  
+    for (let i = 0; i < lines.length; i++) {
+      const lineLength = lines[i].length + 1;
+      if (currentPos + lineLength >= errPosition) {
+        errorLine = i + 1;
+        errorColumn = errPosition - currentPos;
+        break;
+      }
+      currentPos += lineLength;
+    }
+      
+    const errLine = `ERROR: ${err.message}`;
+    const errorLinePrefix = `LINE ${errorLine}: `;
+    const paddedErrorLine = lines[errorLine - 1];
+    const errLineWithPrefix = `${errorLinePrefix}${paddedErrorLine}`;
+    const errPointer = '\u00A0'.repeat(errorLinePrefix.length + errorColumn) + '^';
+      
+    errorMsg += errLine.padEnd(errLineWithPrefix.length, '\u00A0') + '\n';
+    errorMsg += errLineWithPrefix + '\n';
+    errorMsg += errPointer.padEnd(errLineWithPrefix.length, '\u00A0');
+  
+    return {
+      message: errorMsg,
+      date: new Date(),
+    };
+  }  
 }
