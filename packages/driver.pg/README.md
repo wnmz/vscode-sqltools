@@ -3,6 +3,9 @@
 This package is part of [vscode-sqltools](https://vscode-sqltools.mteixeira.dev/?umd_source=repository&utm_medium=readme&utm_campaign=pg) extension.
 
 ## Changelog
+### 0.5.5 (Unofficial patch)
+
+- Print line with pointer to incorrect place in error message
 
 ### 0.5.4
 

@@ -2,11 +2,11 @@
   "name": "sqltools-driver-pg-rich-pg-error",
   "displayName": "SQLTools PostgreSQL/Cockroach Driver (Rich PG Error)",
   "description": "SQLTools PostgreSQL/Cockroach Driver (Rich PG Error)",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "engines": {
     "vscode": "^1.72.0"
   },
-  "publisher": "mtxr",
+  "publisher": "wnm",
   "license": "MIT",
   "private": true,
   "repository": {
